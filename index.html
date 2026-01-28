@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Video Downloader</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #2d2d2d; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; width: 400px; }
+        h2 { color: #ff4757; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border: none; border-radius: 5px; outline: none; box-sizing: border-box; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button { padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-main { background: #ff4757; color: white; }
+        .btn-alt { background: #2f3542; color: white; border: 1px solid #57606f; }
+        button:hover { opacity: 0.8; transform: scale(1.02); }
+        .note { font-size: 11px; color: #a4b0be; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Video Downloader</h2>
+    <p>Paste Link & Select Server</p>
+    
+    <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+
+    <div class="btn-group">
+        <!-- Method 1: Y2Mate Redirect -->
+        <button class="btn-main" onclick="download('y2mate')">Server 1 (Fast)</button>
+        
+        <!-- Method 2: SaveFrom.net Redirect -->
+        <button class="btn-alt" onclick="download('savefrom')">Server 2 (High Quality)</button>
+        
+        <!-- Method 3: 10Convert -->
+        <button class="btn-alt" onclick="download('10convert')">Server 3 (MP3/Video)</button>
+    </div>
+
+    <p class="note">* If one server fails, try another one. No login required.</p>
+</div>
+
+<script>
+    function download(server) {
+        let url = document.getElementById('videoUrl').value;
+        
+        if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+            alert("Please enter a valid YouTube link!");
+            return;
+        }
+
+        let finalUrl = "";
+
+        if (server === 'y2mate') {
+            // Ye link direct y2mate ke downloader par le jayega
+            finalUrl = url.replace("youtube.com", "youtubepp.com");
+        } 
+        else if (server === 'savefrom') {
+            // Ye link savefrom.net par le jayega
+            finalUrl = "https://savefrom.net/" + url;
+        }
+        else if (server === '10convert') {
+            // Ek aur behtareen alternative
+            finalUrl = "https://10convert.com/" + url;
+        }
+
+        // New Tab mein download page kholna
+        window.open(finalUrl, '_blank');
+    }
+</script>
+
+</body>
+</html>
